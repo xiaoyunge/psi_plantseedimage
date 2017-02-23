@@ -1,0 +1,124 @@
+{layout name="LAYOUT/layout_manage" /}
+
+<!-- Content of pane here -->
+<!-- Tab panes -->
+<div id="insert">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <span v-html="summary_warning.ch"></span>
+    </div>
+    <form class="" role="form" action="/think/index.php/psi/Insert/insertNewSpecie" method="POST" enctype="multipart/form-data">
+      <!-- @ Step 1 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>{{ steps.first.title.ch}} <small>{{ steps.first.subtitle.ch}}</small></h4>
+        </div>
+        <div class="panel-body">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <span v-html="category_warn.ch"></span>
+          </div>
+          <!-- @ Phy  -->
+          <fieldset disabled>
+            <div class="form-group">
+              <label class="control-label" for="phy_insert">{{ phy_selector.label.ch}}<span style="color:red;">(Under developing)</span></label>
+              <select class="form-control" name="phy_insert">
+                <option>-- {{ phy_selector.hint.ch}} --</option>
+              </select>
+            </div>
+          </fieldset>
+          <!-- @ fam -->
+          <div class="form-group">
+            <label for="create_newFamily">{{ fam_selector.label.ch}}</label>
+            <select class="form-control" name="query_family">
+              <option>-- {{ fam_selector.label.ch }} --</option>
+            </select>
+            <button class="btn btn-info" data-toggle="modal" data-target="#modal_insert_fam">{{ fam_selector.add.ch }}</button>
+          </div>
+          <!-- @ gen -->
+          <div class="form-group">
+            <label for="gen_insert">{{ gen_selector.label.ch }}</label>
+            <select class="form-control" name="gen_id">
+              <option>-- {{ gen_selector.label.ch }} --</option>
+            </select>
+            <button class="btn btn-info" data-toggle="modal" data-target="#modal_insert_gen">{{ gen_selector.add.ch }}</button>
+          </div>
+        </div>
+      </div>
+      <!-- @ Step 2 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>{{ steps.second.title.ch}}<small>{{ steps.second.subtitle.ch}}</small></h4>
+        </div>
+        <div class="panel-body">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <span v-html="binomial_warn.ch"></span>
+          </div>
+          <div class="input-group">
+            <label>{{ binomial_input.latin.title.ch }}</label>
+          <div class="input-group">
+            <label class="" for="binomial_spe_epi">{{ binomial_input.latin.spe_spi_hint.ch }}</label>
+            <input type="text" class="form-control" name="binomial_spe_epi" id="binomial_spe_epi"
+              title="Input the specific epithet"
+              v-bind:placeholder="binomial_input.latin.spe_spi_hint.ch" required>
+          </div>
+          <div class="input-group">
+            <label class="" for="binomial_auth">{{ binomial_input.latin.author_hint.ch }}</label>
+            <input type="text" class="form-control" name="binomial_auth" id="binomial_auth"
+              title="Input the author name"
+              v-bind:placeholder="binomial_input.latin.author_hint.ch" required>
+          </div><!-- end of input-group -->
+        </div>
+          <hr>
+          <div class="input-group">
+            <label for="chnname">{{ binomial_input.chinese.title.ch }}</label>
+            <input id="chnname" type="text" class="form-control" name="binomial_ch" v-bind:placeholder="binomial_input.chinese.input_hint.ch">
+          </div>
+        </div>
+      </div><!-- End of panel -->
+  	<!-- @ Step 3 -->
+  	<div class="panel panel-default">
+    	<div class="panel-heading">
+    		<h4>{{ steps.third.title.ch}}<small>{{ steps.third.subtitle.ch}}</small></h4>
+    	</div>
+      <div class="panel-body">
+		    <!-- Seed image upload -->
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ upload_image.seed_image.title.ch }}</div>
+          <div class="panel-body">
+            <div id="seedimgdiv">
+              <img id="seedimgshow" width="180" height="180" v-bind:alt="upload_image.seed_image.image_alt.ch">
+              <input id="seedimgulbtn" class="btn btn-info" name="seed_img" type="file" title="upload">
+            </div>
+          </div>
+        </div>
+        <!-- Matured image upload -->
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ upload_image.mature_image.title.ch }}</div>
+          <div class="panel-body">
+            <div id="maturedimgdiv">
+              <img id="maturedimgshow" width="180" height="180" v-bind:alt="upload_image.mature_image.image_alt.ch">
+          	   <input id="maturedimgulbtn" name="matured_img" class="btn btn-info" type="file">
+             </div>
+          </div>
+        </div>
+      </div>
+  	</div>
+    <!-- @ Submit -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <input class="btn btn-info" type="submit" v-bind:value="submit.ch">
+      </div>
+    </div>
+  </form>
+</div><!-- End of tag for "div.insert" being rendered by vue.js -->
+<script src="__VUETPL__/manage/insert.js"></script>
+<!-- Business logic JS file -->
+<script src="__PRIVATEJS__/manage/insert/dragdownLinkage.js"></script>
+<script src="__PRIVATEJS__/manage/insert/insertNewFamily.js"></script>
+<script src="__PRIVATEJS__/manage/insert/insertNewGenus.js"></script>
+<script src="__PRIVATEJS__/manage/insert/dragdown_modal.js"></script>
+{include file="manage/modal/insert_fam" /}
+{include file="manage/modal/insert_gen" /}
+{include file="manage/modal/dialogs" /}

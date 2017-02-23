@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Home - Gamer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="__NPMREPO__/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <table>
+            <tbody>
+                <tr>
+                    <th>skill</th><th>normal damage</th>
+                </tr>
+                 <tr>
+                     <td>ダージリンローテ</td> <td>33</td>
+                 </tr>
+                  <tr>
+                      <td>ヴェノムストーム</td> <td>46</td>
+                  </tr>
+            </tbody>
+        </table>
+        <div id="app">
+            {{ message }} {{ name }}
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue!',
+                    name: 'Kaitou'
+                }
+            })
+        </script>
+    </body>
+</html>

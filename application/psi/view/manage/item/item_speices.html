@@ -1,0 +1,19 @@
+<tr>
+  <td>{$species.spe_name_ch}</td>
+  <td>{$species.spe_name_la}</td>
+  <td>{$species.fam_name_ch}</td>
+  <td>{$species.fam_name_la}</td>
+  <td>{$species.gen_name_ch}</td>
+  <td>{$species.gen_name_la}</td>
+  <td>
+    <button class="btn btn-primary" type="button" name="edit"
+      data-toggle="modal" data-target="#modal_edit_frame" data-speid="{$species.id}"
+      >编辑信息</button>
+    <button class="btn btn-primary" type="button" name="edit_image"
+      data-toggle="modal" data-target="" data-speid="{$species.id}"
+      >编辑图片</button>
+    <button class="btn btn-danger button_delete" type="button"
+      data-toggle="modal" data-target="#comfirm_delete" data-speid="{$species.id}"
+      >删除</button>
+  </td>
+</tr>

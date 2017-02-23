@@ -1,0 +1,16 @@
+<div id="myCarousel" class="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-image-container">
+    <center>
+      <ul>
+        {// Template rendered by thinkPHP }
+        {// Output the items in loop }
+        {volist name="carouselUrls" id="carouselUrl"}
+            <li>
+              <img class=".img-responsive" src="{$carouselUrl}" alt="default image" width="620" height="320">
+            </li>
+        {/volist}
+      </ul>
+    </center>
+  </div>
+</div>

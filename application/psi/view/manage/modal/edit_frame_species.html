@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div class="modal fade" id="modal_edit_frame" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>编辑信息 Edit information</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form">
+          <div class="form-group">
+            <label for="">种小名 Species epithet</label>
+            <input type="text" class="form-control" placeholder="( 空白 Null )" name="spe_epi" value="">
+          </div>
+          <div class="form-group">
+            <label for="">命名者 Authority</label>
+            <input type="text" class="form-control" placeholder="( 空白 Null )" name="spe_auth" value="">
+          </div>
+          <div class="form-group">
+            <label for="">中文学名 Chinese binomial</label>
+            <input type="text" class="form-control" placeholder="( 空白 Null )" name="spe_name_ch" value="">
+          </div>
+          <div class="form-group">
+            <label for="">绑定的科 Bingding Family</label>
+            <select class="" name="fam_id">
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">绑定的属 Bingding Genus</label>
+            <select class="" name="gen_id">
+            </select>
+          </div>
+          <input class="btn btn-primary btn_submit" type="button" value="修改 Update"></button>
+          <button class="btn btn-default" data-dismiss="modal" aria-label="Close">取消(修改不生效) Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

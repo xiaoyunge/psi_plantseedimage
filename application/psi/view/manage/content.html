@@ -1,0 +1,66 @@
+{layout name="LAYOUT/layout_manage" /}
+<script src="__PUBLIC__/js/vendor/ckeditor/ckeditor.js"></script>
+<form class="" action="/think/index.php/psi/update/updateViewContent" method="POST" role="form" id="select_frame">
+  <div class="alert alert-warning" role="alert">请先选择板块</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">可以编辑的板块，请选择</div>
+    <div class="panel-body">
+      <div class="radio-inline">
+        <label>
+          <input type="radio" value="index_intro" name="content_part">首页简介
+        </label>
+      </div>
+      <div class="radio-inline">
+          <label>
+            <input type="radio" value="index_about" name="content_part">首页关于
+          </label>
+        </div>
+      <div class="radio-inline">
+        <label>
+          <input type="radio" value="index_copyright" name="content_part">首页版权
+        </label>
+      </div>
+      <div class="radio-inline">
+        <label>
+          <input type="radio" value="index_credit" name="content_part">首页感谢名单
+        </label>
+      </div>
+    </div>
+  </div>
+  <textarea name="view_content" id="editor_view_content" rows="10" cols="80">
+      Please select the part.
+  </textarea>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <input class="btn btn-primary" type="submit" value="提交编辑"></input>
+    </div>
+  </div>
+
+</form>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    var editor = CKEDITOR.replace( 'editor_view_content',{
+      language: 'zh-cn'
+    });
+    CKEDITOR.instances.editor_view_content.setData( '<p>Please select the part which you want to edit firstly...</p>' );
+</script>
+<script>
+(function(){
+  $(document).ready(function(){
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green',
+      increaseArea: '20%' // optional
+    });
+  });
+})();
+</script>
+<style>
+  div.panel {
+    margin-top: 10px;
+  }
+</style>
+<script src="__VUETPL__/manage/content.js"></script>
+<script src="__VUETPL__/manage/PUBLIC.js"></script>
+<script src="__PRIVATEJS__/manage/content.js"></script>

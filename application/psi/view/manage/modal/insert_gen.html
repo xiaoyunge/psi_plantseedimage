@@ -1,0 +1,31 @@
+<!-- Modal -->
+<div class="modal fade" id="modal_insert_gen" tabindex="-1" role="dialog" aria-labelledby="modal_insert_gen">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>创建新的属 Insert new genus</h4>
+      </div>
+      <div class="modal-body">
+        <form class="" action="" method="" role="form" id="insert_new_genus">
+            <div class="form-group">
+              <label for="exampleInputEmail1">选择对属的科 Family which belong to</label>
+              <select class="form-control" placeholder="Name in Latin" name="fam_id">
+              </select>
+            </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">拉丁属名 Latin genus name</label>
+            <input type="text" class="form-control" placeholder="Name in Latin" name="gen_name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">中文属名 Chinese genus name</label>
+            <input type="text" class="form-control" placeholder="Name in Latin" name="gen_name_ch">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="insert_new_genus_submit">Create new gene</button>
+      </div>
+    </div>
+  </div>
+</div>

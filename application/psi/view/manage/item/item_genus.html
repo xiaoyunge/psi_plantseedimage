@@ -1,0 +1,14 @@
+<tr>
+  <td>{$genus.name_ch}</td>
+  <td>{$genus.name_la}</td>
+  <td>{$genus.fam_name_ch}</td>
+  <td>{$genus.fam_name_la}</td>
+  <td>
+    <button class="btn btn-primary" type="button" name="edit"
+      data-toggle="modal" data-target="#comfirm_delete" data-genid="{$genus.id}"
+      >编辑信息</button>
+    <button class="btn btn-danger button_delete" type="button"
+      data-toggle="modal" data-target="#comfirm_delete" data-genid="{$genus.id}"
+      >删除</button>
+  </td>
+</tr>

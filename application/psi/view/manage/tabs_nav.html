@@ -1,0 +1,23 @@
+<div id="PUBLIC">
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="{eq name="tab_name" value="insert"}active{/eq}"><a href="__ACESSPATH__/manage/insert" role="tab" data-toggle="">{{ tabs_name.insert.ch }}</a></li>
+  <li role="presentation" class="{eq name="tab_name" value="tuple"}active{/eq}">
+      <!--
+      <a href="__ACESSPATH__/manage/tuple" role="tab" data-toggle="">{{ tabs_name.tuple.ch}}</a>
+    -->
+      <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {{ tabs_name.tuple.ch}}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="__ACESSPATH__/manage/species">种级管理</a></li>
+        <li><a href="__ACESSPATH__/manage/genus">属级管理</a></li>
+        <li><a href="__ACESSPATH__/manage/family">科级管理</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">...</a></li>
+      </ul>
+  </li>
+  <li role="presentation" class="{eq name="tab_name" value="content"}active{/eq}"><a href="__ACESSPATH__/manage/content" role="tab" data-toggle="">{{ tabs_name.content.ch}}</a></li>
+</ul>
+</div>

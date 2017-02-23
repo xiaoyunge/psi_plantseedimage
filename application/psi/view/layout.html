@@ -1,0 +1,7 @@
+{include file="PUBLIC/header" /}
+{if condition="$Think.session.user.hasLogin eq 'true'"}
+  {include file="PUBLIC/nav" /}
+{/if}
+{$Think.session.user_id}
+ {__CONTENT__}
+{include file="PUBLIC/footer" /}

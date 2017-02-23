@@ -1,0 +1,38 @@
+{layout name="LAYOUT/layout_manage" /}
+{// Template rendered by thinkPHP }
+{// Output the items in loop }
+<!-- Main content -->
+<ol class="breadcrumb">
+  <li>条目管理</li>
+  <li class="active">属级管理</li>
+</ol>
+<form class="form-inline" action="" method="GET" role="search" >
+  <div class="form-group">
+    <input type="text" name="search" class="form-control" placeholder="输入植物拉丁名称 Insert genus and species name">
+  </div>
+  <button type="submit" class="btn btn-default">搜索 Search</button>
+</form>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <thead></thead>
+    <tbody>
+      <!-- Table header definition -->
+      <tr>
+        <th colspan="2">属名</th><th colspan="2">绑定的科</th><th rowspan="2">操作</th>
+      </tr>
+      <tr>
+        <th>中文</th><th>拉丁</th>
+        <th>中文</th><th>拉丁</th>
+      </tr>
+      <!-- End of table header definition -->
+      {volist name="genuses" id="genus"}
+          {include file="manage/item/item_genus" /}
+      {/volist}
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+</div>
+{$page}
+{include file="manage/modal/confirm_delete" /}
+{include file="manage/modal/dialogs" /}
+<script src="__PRIVATEJS__/manage/tuple/deleteSpeices.js"></script>

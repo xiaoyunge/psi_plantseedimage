@@ -1,0 +1,16 @@
+.idea
+composer.lock
+*.log
+thinkphp
+/nbproject/private/
+/vendor/
+
+# Custom ignore rule
+.settings/
+.buildpath
+/public/static/img/
+/public/static/js/vendor/
+/public/video/
+
+# Sensor files
+/application/database.php

@@ -1,0 +1,110 @@
+{layout name="layout" /}
+<link rel="stylesheet" href="__PRIVATECSS__/normal/home.css">
+<div id="home"><!-- Id be speicified for template rendered by vue.js-->
+<!--
+    Jumbotron
+-->
+<div class="jumbotron">
+  <div class="container">
+      <img class="img-rounded" src="__PUBLIC__/logo.png" alt="logo">
+      <p>
+        {// Template rendered by thinkPHP }
+        {$intro}
+      </p>
+      {include file="PUBLIC/carousel" /}
+  </div><!-- @ End of class="container"-->
+</div><!-- @ End of class="jumbotron"-->
+<!--
+    Search
+-->
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab">
+    <h4 class="panel-title">{{ search_frame.title.ch }} {{ search_frame.title.en }}</h4>
+    </div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <form action = "/think/index.php/psi/search" method = "GET">
+          <div class="input-group">
+            <input type="text" name="search" class="form-control" v-bind:placeholder="search_frame.search_input_hint" required>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span></button>
+            </span>
+          </div><!-- /input-group -->
+        </form>
+      </li>
+      <li class="list-group-item">
+        <div class="input-group">
+        <input class="form-control" type="text" v-bind:placeholder="search_frame.index_input_hint" disabled>
+          <span class="input-group-btn">
+            <a class="btn btn-primary" href="#"><span class="glyphicon glyphicon-arrow-right"></span></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div><!-- @ End of class="panel-body" -->
+<!--
+    About
+-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">{{ about_title.ch }} {{ about_title.en }}</h1>
+  </div>
+  <div class="panel-body">
+    {// Template rendered by thinkPHP }
+    {$about}
+  </div>
+</div>
+<!-- Acknowledgments -->
+<div class="panel-group" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab">
+      <h4 class="panel-title">{{ credit_title.ch }} {{ credit_title.en }}</h4>
+    </div>
+    <div class="panel-body">
+      {// Template rendered by thinkPHP }
+      {$credit}
+    </div>
+  </div>
+</div>
+<!-- Extenal links-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">{{ exlink_title.ch }} {{ exlink_title.en }}</h1>
+  </div>
+  <div class="panel-body">
+    <a href = "http://www.plantphoto.cn/" target = "blank">中国植物图像库</a><br/>
+    <a href = "http://frps.eflora.cn/" target = "blank">《中国植物志》</a></br>
+    <a href="http://foc.eflora.cn/" target = "blank">Flora of China</a>
+  </div>
+</div>
+<!-- User login-->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          {{ userlogin_frame.title.ch }} {{ userlogin_frame.title.en }}
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <form id="login_form" class="form-inline" role="form" action="__ACESSPATH__/user/login" method="POST">
+          <div class="form-group">
+            <input id="input_username" class="form-control" name="username" type="text" v-bind:placeholder="userlogin_frame.user_input_hint" required>
+          </div>
+          <div class="form-group">
+            <input id="password" class="form-control" name="password" type="password" v-bind:placeholder="userlogin_frame.password_input_hint" required>
+          </div>
+          <input type="submit" class="btn btn-default" v-bind:value="userlogin_frame.submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- End of div.home for vue.js template rendering -->
+<script src="__VUETPL__/home.js"></script>
+<link rel="stylesheet" href="__PRIVATECSS__/normal/carousel.css">
+<script src="__PRIVATEJS__/normal/home/carousel.js"></script>
