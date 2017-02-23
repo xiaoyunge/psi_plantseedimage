@@ -73,7 +73,7 @@ class Manage extends Controller
     }
     public function content()
     {
-        $this->view->tab_name =  'Content';
+        $this->view->tab_name =  'content';
         return $this->fetch();
     }
     public function genus(){
@@ -128,5 +128,9 @@ class Manage extends Controller
         $this->view->assign('families', $familiesList);
         $this->view->assign('page', $page);
         return $this->fetch("manage/tuple/family");
+    }
+    public function updateInfo() {
+        $this->view->tab_name =  'updateinfo';
+        return $this->fetch("manage/updateinfo");
     }
 }

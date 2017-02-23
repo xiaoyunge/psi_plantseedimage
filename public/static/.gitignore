@@ -1,2 +1,4 @@
-*
+/img/
+/video/
+/js/vendor/
 !.gitignore

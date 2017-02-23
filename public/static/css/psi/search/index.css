@@ -1,0 +1,17 @@
+/* 
+    Created on : Jan 15, 2017, 9:18:22 PM
+    Author     : haitao
+*/
+body {
+    padding-top: 60px;
+    padding-bottom: 90px;
+}
+form.navbar-form input[type="text"] {
+    width: 400px;
+    min-width: 50px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.pagination_nav {
+     text-align: center;
+}

@@ -26,7 +26,8 @@ return [
     'psi/manage/species' => 'psi/manage/species',
     'psi/manage/content' => 'psi/manage/content',
     'psi/manage/genus' => 'psi/manage/genus',
-    'psi/manage/family' => 'psi/manage/family'
+    'psi/manage/family' => 'psi/manage/family',
+    'psi/manage/updateinfo' => 'psi/manage/updateinfo'
     /*
     'user/add'        => 'index/user/add',
     'user/add_list'   => 'index/user/addList',

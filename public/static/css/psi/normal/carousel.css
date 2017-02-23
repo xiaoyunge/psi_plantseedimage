@@ -1,0 +1,9 @@
+.carousel .carousel-image-container li {
+  list-style-type: none;
+}
+.carousel .carousel-image-container li img {
+  max-width: 500px;
+}
+.carousel {
+  height: 300px;
+}
