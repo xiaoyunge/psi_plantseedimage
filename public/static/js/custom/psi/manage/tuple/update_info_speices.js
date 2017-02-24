@@ -16,9 +16,6 @@
             var spe_name_ch = controllers.modal.find("input[name='spe_name_ch']").val();
             var spe_auth = controllers.modal.find("input[name='spe_auth']").val();
             var gen_id = controllers.modal.find("select[name='gen_id']").val();
-            console.log( "Catch button value: " + spe_id );
-            console.log( "Catch button value: " + spe_auth );
-            console.log( "Catch button value: " + gen_id );
             $.get({
                 url: variable.url,
                 beforeSend: function( xhr ) {},
@@ -38,10 +35,13 @@
                 complete: function(jqXHR, textStatus ) {}
             }).done(function(){
                 $("#dialog_success").modal('show');
+                setTimeout(
+                        function(){window.location.reload();},
+                        5000
+                );
             }).fail(function() {   
                     $("#dialog_fail").modal('show');
             }).always(function() {
-                console.log(spe_epi);
                 controllers.modal.modal('hide');
             });
         });

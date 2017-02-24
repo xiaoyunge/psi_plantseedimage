@@ -13,6 +13,8 @@ use app\psi\model\Species as SpeciesModel;
 use app\psi\model\Genus as GenusModel;
 use app\psi\model\Family as FamilyModel;
 
+use app\psi\src\stuff\Stuff as NewStuffClass;
+
 class Manage extends Controller
 {
     public function _initialize()
@@ -39,7 +41,8 @@ class Manage extends Controller
         $specieses = 
                 SpeciesModel::field(
                     ' s.id as "id", ' .
-                    ' s.binomial as "binomial", ' .
+                    ' s.spe_epi as "spe_epi", ' .
+                    ' s.authority as "spe_authority", ' .
                     ' s.name_ch as "spe_name_ch", ' .
                     ' g.name as "gen_name_la", ' .
                     ' g.name_ch as "gen_name_ch", ' .
@@ -62,7 +65,8 @@ class Manage extends Controller
                 'gen_name_ch' => $species->gen_name_ch,
                  'gen_name_la' => $species->gen_name_la,
                 'spe_name_ch' => $species->spe_name_ch,
-                'spe_name_la' => $species->binomial
+                'spe_epi' => $species->spe_epi,
+                'spe_authority' => $species->spe_authority
             ];
             array_push($speciesList, $tuple);
         }
@@ -130,6 +134,12 @@ class Manage extends Controller
         return $this->fetch("manage/tuple/family");
     }
     public function updateInfo() {
+        if ( !is_null(NewStuffClass::readChangeLog()) ) {
+            $changeLog = NewStuffClass::readChangeLog();
+        } else {
+            $changeLog = '';
+        }
+        $this->view->assign('changelog', $changeLog);
         $this->view->tab_name =  'updateinfo';
         return $this->fetch("manage/updateinfo");
     }

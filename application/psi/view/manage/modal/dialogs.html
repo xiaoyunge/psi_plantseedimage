@@ -1,6 +1,8 @@
 <!-- Small modal -->
 <!-- operarion success -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="dialog_success">
+<div class="modal fade bs-example-modal-sm"
+  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  id="dialog_success">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,14 +11,20 @@
       </div>
       <div class="modal-body">
         <p>操作成功 Successful operation.</p>
-        <p>可能需要刷新才能看到修改结果 Maybe see the result after refreshing.</p>
+        <p>5秒后将会刷新此页 Refresh after 5 second</p>
+        <button class="btn btn-primary" type="button" name="button"
+          onclick="(function(){window.location.reload();})()">
+          立即刷新
+        </button>
       </div>
     </div>
   </div>
 </div>
 <!-- Small modal -->
 <!-- operarion fail -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="dialog_fail">
+<div class="modal fade bs-example-modal-sm"
+  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  id="dialog_fail">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -24,7 +32,12 @@
         <h4 class="modal-title">提示 Dialog</h4>
       </div>
       <div class="modal-body">
-        操作失败 Fail operation.
+        <p>操作失败 Fail operation.</p>
+        <p>5秒后将会刷新此页 Refresh after 5 second</p>
+        <button class="btn btn-primary" type="button" name="button"
+          onclick="(function(){window.location.reload();})()">
+          立即刷新
+        </button>
       </div>
     </div>
   </div>

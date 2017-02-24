@@ -58,8 +58,8 @@ class Update extends Controller
             'id' => $request->get( "gen_id" )
         ]);
         $targetGenus->fam_id = $request->get("fam_id");
-        $targetGenus->name = $request->get("name");
-        $targetGenus->name_ch = $request->get("name_ch");
+        $targetGenus->name = $request->get("gen_name");
+        $targetGenus->name_ch = $request->get("gen_name_ch");
         $targetGenus->save();
     }
     public function updateFamilyById( Request $request )

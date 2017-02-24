@@ -12,6 +12,10 @@
   </div>
   <button type="submit" class="btn btn-default">搜索 Search</button>
 </form>
+<button class="btn btn-primary" id="add_new_genus" type="button" name="button"
+  data-toggle="modal" data-target="#modal_edit_frame">
+  增加新属
+</button>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover table-condensed">
     <thead></thead>
@@ -34,5 +38,8 @@
 </div>
 {$page}
 {include file="manage/modal/confirm_delete" /}
+{include file="manage/modal/edit_frame_genus" /}
 {include file="manage/modal/dialogs" /}
-<script src="__PRIVATEJS__/manage/tuple/deleteSpeices.js"></script>
+<script src="__PRIVATEJS__/manage/tuple/query_info_genus.js"></script>
+<script src="__PRIVATEJS__/manage/tuple/update_info_genus.js"></script>
+<script src="__PRIVATEJS__/manage/tuple/insert_info_genus.js"></script>
