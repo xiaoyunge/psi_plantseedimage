@@ -1,34 +1,60 @@
 {layout name="LAYOUT/layout_withnavbar" /}
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/index/search/index.css" >
-<!-- First letter panel-->
+<link rel="stylesheet" type="text/css" href="__PRIVATECSS__/search/index.css" >
+<div id="search">
 <div class="panel panel-default">
-  <div class="panel-heading">索引字母 First letter of index</div>
   <div class="panel-body">
-    <div class="btn-group btn-group-justified">
-  </div>
+	{// Template rendered by thinkPHP }
+	{// Output the items in loop }
+	{volist name="alphabet" id="alpha" empty="NULL" }
+    	{include file="search/index/item_alphabet" /}
+	{/volist}
   </div>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading">Result numbers</div>
   <div class="panel-body">
-    Result number...
+      {$count|default="Unkown"}
   </div>
 </div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
-      <h4>
-         Ttitle...
-          <button class="btn btn-primary">Edit</button>
-      </h4>
+        <span>{{ search_option_title.ch }}</span> <span>{{ search_option_title.en }}</span>
     </div>
-    <div class="panel_body">
-        <img src="" class="img-thumbnail img-responsive" data-toggle="modal" data-target="#myModal" alt="Responsive image ">
-      <div class="panel-body">
-        <span>Gene:</span>
-        Gene_ch Gene_la
-        <br>
-        <span>Family:</span>
-        Fami_ch Fami_la<br>
-      </div>
-    </div><!-- End of CLASS panel_body-->
+  <div class="panel-body">
+      <form class="form-inline" action="{$Think.server.PHP_SELF}" method="GET">
+        <input type="hidden" name="fl" value="{$Request.get.fl}">
+        <input type="hidden" name="page" value="1">
+        <div class="form-group">
+        	<label for="form_items_per_page">
+            	{{ search_option_itemsperpage.ch }} {{ search_option_itemsperpage.en }}:
+          	</label>
+          	<select class="form-control" name="perpage" id="form_items_per_page">
+            	<option value="10" {eq name="$Request.get.perpage" value="10"}selected{/eq}>10</option>
+            	<option value="15" {eq name="$Request.get.perpage" value="15"}selected{/eq}>15</option>
+            	<option value="20" {eq name="$Request.get.perpage" value="20"}selected{/eq}>20</option>
+            	<option value="25" {eq name="$Request.get.perpage" value="25"}selected{/eq}>25</option>
+            	<option value="30" {eq name="$Request.get.perpage" value="30"}selected{/eq}>30</option>
+          	</select>
+        </div>
+        <div class="form-group">
+          <label for="form_items_order">
+            {{ search_option_order.ch }} {{ search_option_order.en }}:
+          </label>
+          <select class="form-control" name="order" id="form_items_order">
+            <option value="species" {eq name="$Request.get.order" value="species"}selected{/eq}>种 species</option>
+            <option value="genus" {eq name="$Request.get.order" value="gene"}selected{/eq}>属 genus</option>
+            <option value="family" {eq name="$Request.get.order" value="family"}selected{/eq}>科 family</option>
+          </select>
+        </div>
+        <input class="btn btn-default" type="submit" value="应用搜索选项 Apply search option">
+      </form>
+  </div>
 </div>
+ </div>
+{// Template rendered by thinkPHP }
+{// Output the items in loop }
+{volist name="items" id="item"}
+    {include file="PUBLIC/item_species" /}
+{/volist}
+<script src="__VUETPL__/search.js"></script>
+<script src="__PRIVATEJS__/search/search/varyingModal.js"></script>

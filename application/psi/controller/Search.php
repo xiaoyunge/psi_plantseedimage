@@ -1,136 +1,106 @@
 <?php
 namespace app\psi\controller;
 
+// ThinkPHP framwork libraries
 use think\Controller;
 use think\Request;
-use think\Db;
+use think\Loader;
+
+// Custom modules.
 use app\psi\_stuff\Config as CustomConfig;
-// Module
+use app\psi\src\data\Species;
+
+// Model.
 use app\psi\model\Content as CotentModel;
 use app\psi\model\Species as SpeciesModel;
 
+
 class Search extends Controller
 {
+	public $order_mapper = [
+			/* Querying name => field name in database project to */
+			'species' => 'spe_epi, spe_authority, gen_name, spe_name_ch',
+			'genus' => 'gen_name, gen_name_ch',
+			'family' => 'fam_name_ch, fam_name'
+	];
     public function _initialize()
-    {
+    {	
         $this->view->copyright = CotentModel::get( [
             'part' => 'index_copyright'
         ] )->content_en;
         CustomConfig::FrontInitialize($this->view);
-        $this->assign( 'page', 1 );
+        $this->view->title = 'Search page';
     }
     public function search( Request $request )
     {
-        if ( !is_null($request->get('page')) && is_numeric($request->get('page'))) {
-            $page = $request->get('page');
-        } else {
-            $page = 1;
-        }
-        if ( !is_null($request->get('ipp')) && is_numeric($request->get('ipp'))) {
-            $itemsPerPage = $request->get('ipp');
-        } else {
-            $itemsPerPage = 10;
-        }
-        if ( !is_null($request->get('search')) && is_string($request->get('search')) ) {
-            $search = $request->get('search');
-        } else {
-            $search = '';
-        }
-        if ( !is_null($request->get('order')) && is_string($request->get('order')) ) {
-            $order = (String)$request->get('order');
-        } else {
-            $order = 'species';
-        }
-        $order_project = [
-            /* Querying name => field name in database project to */
-            'species' => 's.name_ch, s.binomial',
-            'genus' => 'g.name_ch, g.name',
-            'family' => 'f.name_ch, f.name'
+    	// Get the query.
+        $query = [
+        	'search'=> $request->get('search'),
+        	'perpage'=> $request->get('perpage'),
+        	'order' => $request->get('order'),
+        	'page' => $request->get('page')
         ];
-        $this->view->title =  'Search page';
-        $this->assign( 'search', $request->get('search') );
-        $this->assign( 'ipp', $request->get('ipp') );
-        $this->assign( 'order', $request->get('order') );
-        
-        // Main datatbase query snippet(!IMPORTANT)
+        // Validate the query.
+        $validate = Loader::validate('Search');
+        if(!$result = $validate->check($query)){
+        	dump($validate->getError());
+        	$query['search'] = '';
+        	$query['perpage'] = 10;
+        	$query['order'] = 'species';
+        	$query['page'] = 1;
+		}
+        // Query with model.
         $speices = new SpeciesModel;
-        $items = $speices->field(
-                    ' s.id as "id", ' .
-                    ' s.binomial as "binomial", ' .
-                    ' s.name_ch as "spe_name_ch", ' .
-                    ' g.name as "gen_name_la", ' .
-                    ' g.name_ch as "gen_name_ch", ' .
-                    ' f.name as "fam_name_la", ' . 
-                    ' f.name_ch as "fam_name_ch" '
-                    )
-            ->alias('s')
-            ->join('cate_gen g', 's.gen_id = g.id')
-            ->join('cate_fam f', 'g.fam_id = f.id')
-            ->where( 's.name_ch', 'like', "%$search%" )
-            ->whereOr( 'g.name_ch', 'like', "%$search%" )
-            ->whereOr( 'f.name_ch', 'like', "%$search%" )
-            ->whereOr( 'binomial', 'like', "%$search%" )
-            ->whereOr( 'g.name', 'like', "%$search%" )
-            ->whereOr( 'f.name', 'like', "%$search%" )
-            ->order($order_project[$order])
-            ->page( $page, $itemsPerPage )
-            ->select(); 
-        $count = $speices->field(
-                    ' s.id as "id", ' .
-                    ' s.binomial as "binomial", ' .
-                    ' s.name_ch as "spe_name_ch", ' .
-                    ' g.name as "gen_name_la", ' .
-                    ' g.name_ch as "gen_name_ch", ' .
-                    ' f.name as "fam_name_la", ' . 
-                    ' f.name_ch as "fam_name_ch" '
-                    )
-            ->alias('s')
-            ->join('cate_gen g', 's.gen_id = g.id')
-            ->join('cate_fam f', 'g.fam_id = f.id')
-            ->where( 's.name_ch', 'like', "%$search%" )
-            ->whereOr( 'g.name_ch', 'like', "%$search%" )
-            ->whereOr( 'f.name_ch', 'like', "%$search%" )
-            ->whereOr( 'binomial', 'like', "%$search%" )
-            ->whereOr( 'g.name', 'like', "%$search%" )
-            ->whereOr( 'f.name', 'like', "%$search%" )
-            ->count();
-        $this->view->assign('count', $count);
-        $pagination = $speices->field(
-                    ' s.id as "id", ' .
-                    ' s.binomial as "binomial", ' .
-                    ' s.name_ch as "spe_name_ch", ' .
-                    ' g.name as "gen_name_la", ' .
-                    ' g.name_ch as "gen_name_ch", ' .
-                    ' f.name as "fam_name_la", ' . 
-                    ' f.name_ch as "fam_name_ch" '
-                    )
-            ->alias('s')
-            ->join('cate_gen g', 's.gen_id = g.id')
-            ->join('cate_fam f', 'g.fam_id = f.id')
-            ->where( 's.name_ch', 'like', "%$search%" )
-            ->whereOr( 'g.name_ch', 'like', "%$search%" )
-            ->whereOr( 'f.name_ch', 'like', "%$search%" )
-            ->whereOr( 'binomial', 'like', "%$search%" )
-            ->whereOr( 'g.name', 'like', "%$search%" )
-            ->whereOr( 'f.name', 'like', "%$search%" )
-            ->order($order_project[$order])
-            ->paginate($request->get('ipp'), false,[
-                'type'     => 'bootstrap',
-                'var_page' => 'page',
-                'query' => array(
-                    'search' => $request->get('search'),
-                     'ipp' => $request->get('ipp'),
-                     'order' => $request->get('order')
-                )
-            ]);
-        $this->assign('pagination', $pagination);
-        $this->assign('items', $items);
+        $species = Species::getMultiSpeciesBySearchWord(
+        				$query['search'], 
+        				array(
+    						'search' => $query['search'],
+    						'perpage' => $query['perpage'],
+    						'order' => $query['order'] 
+        				),
+        				$this->order_mapper[$query['order']],
+        				$query['perpage']
+        			);
+        $this->assign('count', $species->toArray()["total"]);
+        $this->assign('pagination', $species);
+        $this->assign('items', $species);
+        // 
+        $this->view->title = 'Search page';
         return $this->fetch();
     }
     public function index( Request $request )
     {   
+    	if ( !is_null($request->get('fl')) && is_string($request->get('fl')) ) {
+    		$search = $request->get('fl');
+    	} else {
+    		$search = '';
+    	}
+    	$order = 'species';
+    	$perPage = 10;
+    	$firstLetter = $request->get('fl');
+    	$species = Species::getMultiSpeciesByFirstLetter(
+    			$firstLetter,
+    			array(
+    					'search' => $request->get('search'),
+    					'perpage' => $request->get('perpage'),
+    					'order' => $request->get('order')
+    			),
+    			$this->order_mapper[$order],
+    			$perPage
+    			);
+    	// dump($species);
+    	$alphabet = [];
+    	for ($alpha = 'a'; $alpha <= 'z'; $alpha++) {
+    		if ($alpha == 'aa') {
+    			break;
+    		}
+    		array_push($alphabet, $alpha);
+    	}
+    	$this->assign( 'alphabet', $alphabet );
         $this->assign( 'title', 'index page' );
-        $this->assign( 'page', $request->get('page') );
+        $this->assign('count', $species->toArray()["total"]);
+        $this->assign('pagination', $species);
+        $this->assign('items', $species);
         return $this->fetch();
     }
 }

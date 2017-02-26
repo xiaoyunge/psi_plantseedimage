@@ -1,0 +1,7 @@
+<a class="btn 
+		{eq name="$Request.get.fl" value="$alpha" }btn-primary
+			{else/}btn-default
+		{/eq}>" 
+	href="{$Think.server.PHP_SELF}?fl={$alpha}">
+	{$alpha}
+</a>

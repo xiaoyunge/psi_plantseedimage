@@ -20,6 +20,7 @@ return [
     'psi/home'      => 'psi/normal/home',
     'psi/normal/home'      => 'psi/normal/home',
     'psi/search'     => 'psi/search/search',
+	'psi/index'     => 'psi/search/index',
     'psi/manage' => 'psi/manage/insert',
     'psi/manage/insert' => 'psi/manage/insert',
     'psi/manage/user' => 'psi/manage/user',

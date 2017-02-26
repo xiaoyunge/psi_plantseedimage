@@ -11,7 +11,7 @@ use think\Request;
 // use think\View;
 // Custom modual
 use app\psi\_stuff\Config as CustomConfig;
-use app\psi\_stuff\Stuff; 
+use app\psi\_stuff\Stuff;
 
 // Model be used
 use app\psi\model\Content as CotentModel;
